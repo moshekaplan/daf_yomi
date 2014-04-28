@@ -76,7 +76,7 @@ def number_to_daf(number):
     original_number = number
     
     if number < 0:
-        raise Exception("Invalid number %d is <= 0" % original_number)
+        raise Exception("Invalid number %d is < 0" % original_number)
 
     number = number % (TOTAL_BLATT)
     
@@ -156,5 +156,3 @@ def run_tests():
             % initial_number, dafstring, number)
 
 run_tests()
-print todays_daf()
-print catch_up_by("Beitzah 17", 2)
