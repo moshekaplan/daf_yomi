@@ -1,9 +1,9 @@
-#! /usr/bin/env python
+#!/usr/bin/env python
 
 """
 Python code for performing calculations related to Daf Yomi
 
-Designed for Python 2
+Supports Python 2 and Python 3
 
 Copyright (c) 2014, Moshe Kaplan
 All rights reserved.
@@ -149,6 +149,7 @@ def blatt_per_day_to_catch_up(current_position, end_date):
     """Calculates how many blatt you need to do each day to catch up by end_date"""
     remaining_blatt = how_far_behind(current_position)
     remaining_days = (end_date - datetime.date.today()).days
+    print (remaining_days)
     return remaining_blatt*1.0/remaining_days
 
 def catch_up_by(current_position, blatt_per_day):
@@ -160,10 +161,11 @@ def catch_up_by(current_position, blatt_per_day):
 
 # Test code:
 def run_tests():
-    if number_to_daf(0) != (MESECHTOS_BLATT.keys()[0], 2):
+    # Sanity checks:
+    if number_to_daf(0) != (list(MESECHTOS_BLATT.keys())[0], 2):
         raise Exception("Day 0 is Brachos!")
 
-    if number_to_daf(63) != (MESECHTOS_BLATT.keys()[1], 2):
+    if number_to_daf(63) != (list(MESECHTOS_BLATT.keys())[1], 2):
         raise Exception("Day 63 is Shabbos!")
     
     # Daf for generic date
@@ -177,5 +179,12 @@ def run_tests():
     if number != initial_number :
         raise Exception("Text to number failed! initial_number=%d, dafstring=%s, result=%d"
             % initial_number, dafstring, number)
+
+    # Check if the helper functions run:
+    how_far_behind('Berachos 1')
+    catch_up_by('Berachos 1', 2)
+
+    blatt_per_day_to_catch_up('Berachos 1', datetime.date.today() + datetime.timedelta(days=3) )
+
 
 run_tests()
