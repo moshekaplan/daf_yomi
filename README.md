@@ -1,4 +1,4 @@
 daf_yomi
 ========
 
-Python code for performing calculations related to Daf Yomi
+Python 2/3 code for performing calculations related to Daf Yomi
